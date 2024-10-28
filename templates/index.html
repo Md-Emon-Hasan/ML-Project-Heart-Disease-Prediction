@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+</head>
+<body>
+    <h1>Heart Disease Prediction</h1>
+
+    {% if prediction is not none %}
+        <h2>Prediction: {{ "Disease Detected" if prediction == 1 else "No Disease Detected" }}</h2>
+    {% endif %}
+
+    <form action="/predict" method="post">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" value="{{ age }}" required><br>
+
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" required>
+            {% for value in sexs %}
+                <option value="{{ value }}" {% if value == sex %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="cp">Chest Pain Type (cp):</label>
+        <select id="cp" name="cp" required>
+            {% for value in cps %}
+                <option value="{{ value }}" {% if value == cp %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="trestbps">Resting Blood Pressure (trestbps):</label>
+        <input type="number" id="trestbps" name="trestbps" value="{{ trestbps }}" required><br>
+
+        <label for="chol">Cholesterol (chol):</label>
+        <input type="number" id="chol" name="chol" value="{{ chol }}" required><br>
+
+        <label for="fbs">Fasting Blood Sugar > 120 mg/dl (fbs):</label>
+        <select id="fbs" name="fbs" required>
+            {% for value in fbss %}
+                <option value="{{ value }}" {% if value == fbs %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="restecg">Resting ECG Results (restecg):</label>
+        <select id="restecg" name="restecg" required>
+            {% for value in restecgs %}
+                <option value="{{ value }}" {% if value == restecg %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="thalach">Maximum Heart Rate Achieved (thalach):</label>
+        <input type="number" id="thalach" name="thalach" value="{{ thalach }}" required><br>
+
+        <label for="exang">Exercise Induced Angina (exang):</label>
+        <select id="exang" name="exang" required>
+            {% for value in exangs %}
+                <option value="{{ value }}" {% if value == exang %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="oldpeak">ST Depression Induced by Exercise (oldpeak):</label>
+        <input type="number" step="0.1" id="oldpeak" name="oldpeak" value="{{ oldpeak }}" required><br>
+
+        <label for="slope">Slope of the Peak Exercise ST Segment (slope):</label>
+        <select id="slope" name="slope" required>
+            {% for value in slopes %}
+                <option value="{{ value }}" {% if value == slope %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="ca">Number of Major Vessels (ca):</label>
+        <select id="ca" name="ca" required>
+            {% for value in cas %}
+                <option value="{{ value }}" {% if value == ca %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="thal">Thalassemia (thal):</label>
+        <select id="thal" name="thal" required>
+            {% for value in thals %}
+                <option value="{{ value }}" {% if value == thal %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>
