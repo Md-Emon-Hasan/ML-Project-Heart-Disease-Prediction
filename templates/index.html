@@ -18,16 +18,18 @@
 
         <label for="sex">Sex:</label>
         <select id="sex" name="sex" required>
-            {% for value in sexs %}
-                <option value="{{ value }}" {% if value == sex %}selected{% endif %}>{{ value }}</option>
-            {% endfor %}
+            <option selected disabled>----select option----</option>
+            <option value="1" {% if sex == 1 %}selected{% endif %}>Male</option>
+            <option value="0" {% if sex == 0 %}selected{% endif %}>Female</option>
         </select><br>
 
         <label for="cp">Chest Pain Type (cp):</label>
         <select id="cp" name="cp" required>
-            {% for value in cps %}
-                <option value="{{ value }}" {% if value == cp %}selected{% endif %}>{{ value }}</option>
-            {% endfor %}
+            <option selected disabled>----select option----</option>
+            <option value="0" {% if cp == 0 %}selected{% endif %}>Typical Angina</option>
+            <option value="1" {% if cp == 1 %}selected{% endif %}>Atypical Angina</option>
+            <option value="2" {% if cp == 2 %}selected{% endif %}>Non-anginal Pain</option>
+            <option value="3" {% if cp == 3 %}selected{% endif %}>Asymptomatic</option>
         </select><br>
 
         <label for="trestbps">Resting Blood Pressure (trestbps):</label>
@@ -38,16 +40,15 @@
 
         <label for="fbs">Fasting Blood Sugar > 120 mg/dl (fbs):</label>
         <select id="fbs" name="fbs" required>
-            {% for value in fbss %}
-                <option value="{{ value }}" {% if value == fbs %}selected{% endif %}>{{ value }}</option>
-            {% endfor %}
+            <option value="1" {% if fbs == 1 %}selected{% endif %}>True</option>
+            <option value="0" {% if fbs == 0 %}selected{% endif %}>False</option>
         </select><br>
 
         <label for="restecg">Resting ECG Results (restecg):</label>
         <select id="restecg" name="restecg" required>
-            {% for value in restecgs %}
-                <option value="{{ value }}" {% if value == restecg %}selected{% endif %}>{{ value }}</option>
-            {% endfor %}
+            <option value="0" {% if restecg == 0 %}selected{% endif %}>Normal</option>
+            <option value="1" {% if restecg == 1 %}selected{% endif %}>ST-T Wave Abnormality</option>
+            <option value="2" {% if restecg == 2 %}selected{% endif %}>Left Ventricular Hypertrophy</option>
         </select><br>
 
         <label for="thalach">Maximum Heart Rate Achieved (thalach):</label>
@@ -55,9 +56,8 @@
 
         <label for="exang">Exercise Induced Angina (exang):</label>
         <select id="exang" name="exang" required>
-            {% for value in exangs %}
-                <option value="{{ value }}" {% if value == exang %}selected{% endif %}>{{ value }}</option>
-            {% endfor %}
+            <option value="1" {% if exang == 1 %}selected{% endif %}>Yes</option>
+            <option value="0" {% if exang == 0 %}selected{% endif %}>No</option>
         </select><br>
 
         <label for="oldpeak">ST Depression Induced by Exercise (oldpeak):</label>
@@ -65,9 +65,9 @@
 
         <label for="slope">Slope of the Peak Exercise ST Segment (slope):</label>
         <select id="slope" name="slope" required>
-            {% for value in slopes %}
-                <option value="{{ value }}" {% if value == slope %}selected{% endif %}>{{ value }}</option>
-            {% endfor %}
+            <option value="0" {% if slope == 0 %}selected{% endif %}>Upsloping</option>
+            <option value="1" {% if slope == 1 %}selected{% endif %}>Flat</option>
+            <option value="2" {% if slope == 2 %}selected{% endif %}>Downsloping</option>
         </select><br>
 
         <label for="ca">Number of Major Vessels (ca):</label>
@@ -79,9 +79,9 @@
 
         <label for="thal">Thalassemia (thal):</label>
         <select id="thal" name="thal" required>
-            {% for value in thals %}
-                <option value="{{ value }}" {% if value == thal %}selected{% endif %}>{{ value }}</option>
-            {% endfor %}
+            <option value="0" {% if thal == 0 %}selected{% endif %}>Normal</option>
+            <option value="1" {% if thal == 1 %}selected{% endif %}>Fixed Defect</option>
+            <option value="2" {% if thal == 2 %}selected{% endif %}>Reversible Defect</option>
         </select><br><br>
 
         <button type="submit">Predict</button>
