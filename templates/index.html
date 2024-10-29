@@ -41,13 +41,13 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="trestbps">Resting Blood Pressure (trestbps):</label>
-                    <input type="number" class="form-control" id="trestbps" name="trestbps" value="{{ trestbps }}" placeholder="" required>
+                    <input type="number" class="form-control" id="trestbps" name="trestbps" value="{{ trestbps }}" placeholder="" required placeholder="Enter Resting Blood Pressure(94-200)">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="chol">Cholesterol (chol):</label>
-                    <input type="number" class="form-control" id="chol" name="chol" value="{{ chol }}" required>
+                    <input type="number" class="form-control" id="chol" name="chol" value="{{ chol }}" required placeholder="Enter Cholesterol(126-564)">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="fbs">Fasting Blood Sugar > 120 mg/dl (fbs):</label>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="thalach">Max Heart Rate Achieved (thalach):</label>
-                    <input type="number" class="form-control" id="thalach" name="thalach" value="{{ thalach }}" required>
+                    <input type="number" class="form-control" id="thalach" name="thalach" value="{{ thalach }}" required placeholder="Enter Max Heart Rate Achieved(71-202)">
                 </div>
             </div>
             <div class="form-row">
@@ -79,7 +79,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="oldpeak">ST Depression Induced by Exercise (oldpeak):</label>
-                    <input type="number" step="0.1" class="form-control" id="oldpeak" name="oldpeak" value="{{ oldpeak }}" required>
+                    <input type="number" step="0.1" class="form-control" id="oldpeak" name="oldpeak" value="{{ oldpeak }}" required placeholder="Enter ST Depression Induced by Exercise(0.0-6.2)">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="slope">Slope of the Peak Exercise ST Segment (slope):</label>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="ca">Number of Major Vessels (ca):</label>
-                    <select class="form-control" id="ca" name="ca" required>
+                    <select class="form-control" id="ca" name="ca" required placeholder="">
                         {% for value in cas %}
                             <option value="{{ value }}" {% if value == ca %}selected{% endif %}>{{ value }}</option>
                         {% endfor %}
