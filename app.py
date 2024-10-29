@@ -7,8 +7,8 @@ import pandas as pd
 app = Flask(__name__)
 
 # Load the model and data
-data = pickle.load(open('C:/Users/emon1/OneDrive/Desktop/my project/models/data.pkl', 'rb'))
-pipe = pickle.load(open('C:/Users/emon1/OneDrive/Desktop/my project/models/model.pkl', 'rb'))
+data = pickle.load(open('./models/data.pkl', 'rb'))
+pipe = pickle.load(open('./models/model.pkl', 'rb'))
 
 @app.route('/', methods=['GET'])
 def index():
