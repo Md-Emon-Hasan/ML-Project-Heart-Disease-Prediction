@@ -32,7 +32,7 @@ jobs:
           ${{ runner.os }}-buildx-
 
     - name: Build Docker image
-      run: docker build -t Heart-Disease-Prediction .
+      run: docker build -t heart-disease-prediction .
 
     - name: Test the application (Run tests inside container)
-      run: docker run --rm Heart-Disease-Prediction pytest tests/
+      run: docker run --rm heart-disease-prediction pytest tests/
