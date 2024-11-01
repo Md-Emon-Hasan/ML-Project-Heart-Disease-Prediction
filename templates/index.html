@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart Disease Prediction</title>
+    <title>E-commerce Fraud Detection</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Heart Disease Prediction</h1>
+        <h1>E-commerce Fraud Detection</h1>
 
         {% if survived is not none %}
             <h2 class="animate__animated animate__bounce">Prediction: {{ "Disease Detected" if survived == 1 else "No Disease Detected" }}</h2>
         {% endif %}
 
-        <form action="/predict" method="get">
+        <form action="/predict" method="post">
             <div class="form-row">
 
                 <!-- Source -->
@@ -136,7 +136,7 @@
     </div>
 
     <footer class="footer">
-        <p>&copy; 2024 Heart Disease Prediction App | Developed by <a href="https://github.com/Md-Emon-Hasan">Md Emon Hasan</a></p>
+        <p>&copy; 2024 E-commerce Fraud Detection App | Developed by <a href="https://github.com/Md-Emon-Hasan">Md Emon Hasan</a></p>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

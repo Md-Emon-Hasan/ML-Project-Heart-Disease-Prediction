@@ -5,7 +5,7 @@ import pandas as pd
 app = Flask(__name__)
 
 # Load the model
-data = pickle.load(open('./model/data.pkl', 'rb'))
+data = pickle.load(open('./model/raw_data.pkl', 'rb'))
 model = pickle.load(open('./model/model.pkl', 'rb'))
 
 @app.route('/', methods=['GET'])
@@ -46,8 +46,7 @@ def predict():
     purchase_over_time = float(request.form['purchase_over_time'])
 
     # Create a DataFrame from the input data for the model
-    query = pd.DataFrame([[source, browser, sex, age, country_name, n_device_occur, signup_month, signup_day, signup_day_name, purchase_month, purchase_day, purchase_day_name, purchase_over_time]], 
-                         columns=['source', 'browser', 'sex', 'age', 'country_name', 'n_device_occur', 'signup_month', 'signup_day', 'signup_day_name', 'purchase_month', 'purchase_day', 'purchase_day_name', 'purchase_over_time'])
+    query = pd.DataFrame([[source, browser, sex, age, country_name, n_device_occur, signup_month, signup_day, signup_day_name, purchase_month, purchase_day, purchase_day_name, purchase_over_time]], columns=['source', 'browser', 'sex', 'age','country_name', 'n_device_occur', 'signup_month', 'signup_day', 'signup_day_name', 'purchase_month', 'purchase_day', 'purchase_day_name', 'purchase_over_time'])
 
     # Predict
     prediction = model.predict(query)[0]
