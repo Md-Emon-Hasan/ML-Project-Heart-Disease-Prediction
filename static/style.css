@@ -1,99 +1,94 @@
-/* Background Image */
 body {
-    background-image: url('https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-image: url('https://media.licdn.com/dms/image/D5612AQFTmcnOkh6_8Q/article-cover_image-shrink_720_1280/0/1663775961726?e=2147483647&v=beta&t=M9mbbxYPGFr47zo4VkNGeWPOuwW_5c737dqp-MnE32k');
+    /* background-size: cover; */
     background-size: cover;
-    background-attachment: fixed;
-    color: #f8f9fa;
+    background-repeat: no-repeat;
+    color: #ffffff;
     font-family: Arial, sans-serif;
 }
-
-/* Container and Card Style */
 .container {
-    max-width: 900px;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 40px;
-    margin-top: 60px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
-
-h1 {
+h1{
+    /* font-size: 36px;
+    font-weight: bold; */
+    color: #f2fa7d;
+    animation: fadeIn 1s;
+}
+h1, h2 {
     text-align: center;
-    font-weight: bold;
-    color: #ffd700;
+    animation: fadeIn 2s;
     margin-bottom: 20px;
 }
-
-h2 {
-    text-align: center;
-    color: #ffc107;
-    margin-top: 20px;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
-
-/* Button Style */
-.btn-primary {
-    background-color: #007bff;
-    border-color: #0056b3;
-    transition: all 0.3s ease-in-out;
+label {
+    font-weight: bold;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    color: #f8f9fa; /* Lighter label color */
+}
+input, select {
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 0 10px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus, select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+.btn{
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+button {
     width: 100%;
-    font-size: 18px;
-    border-radius: 15px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
 }
-
-.btn-primary:hover {
+button:hover {
     background-color: #0056b3;
-    transform: scale(1.05);
+    transform: translateY(-2px);
 }
-
-/* Footer Style */
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.4);
+}
 .footer {
     text-align: center;
     margin-top: 30px;
-    color: #cccccc;
-    font-size: 14px;
+    font-size: 0.9em;
+    color: #ffffff;
 }
-
-.form-control{
-    border-radius: 10px;
+.form-row {
+    margin-bottom: 20px; /* Space between form rows */
 }
-
-/* Input and Select Styles */
-.form-control, .form-select {
-    background-color: #696969;
-    color: #f8f9fa;
-    border: 1px solid #494949;
+.footer a:hover{
+    color: #ddfc53;
+    text-decoration: none;
 }
-
-.form-control::placeholder, .form-select::placeholder {
-    color: #ccc;
-}
-
-label {
-    font-weight: bold;
-    color: #ffc107;
-}
-
-/* Animation for Prediction Result */
-.animate__animated.animate__bounce {
-    animation: bounceIn 2s infinite alternate;
-}
-
-/* Bounce Animation */
-@keyframes bounceIn {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.05); }
-}
-
-/* Fieldset and form styling */
-fieldset {
-    border: 1px solid #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-}
-
-legend {
-    color: #ffc107;
-    font-weight: bold;
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
 }
 
 /* Hide spin buttons in Chrome, Safari, Edge */

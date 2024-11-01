@@ -3,148 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce Fraud Detection</title>
+    <title>Heart Disease Prediction</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        
-    </style>
 </head>
 <body>
     <div class="container">
-        <h1>E-commerce Fraud Detection</h1>
+        <h1>Heart Disease Prediction</h1>
 
-        {% if survived is not none %}
-            <h2 class="animate__animated animate__bounce">Prediction: {{ "Fraud" if survived == 1 else "Legal" }}</h2>
+        {% if prediction is not none %}
+            <h2 class="animate__animated animate__bounce">Prediction: {{ "Disease Detected" if prediction == 1 else "No Disease Detected" }}</h2>
         {% endif %}
 
         <form action="/predict" method="post">
-            <fieldset>
-                <legend>Customer Details</legend>
-                <div class="form-row">
-                    <!-- Source -->
-                    <div class="form-group col-md-3">
-                        <label for="source">Source:</label>
-                        <select class="form-control" id="source" name="source" required>
-                            <option selected disabled>----select option----</option>
-                            <option value="0" {% if source == "0" %}selected{% endif %}>Seo</option>
-                            <option value="1" {% if source == "1" %}selected{% endif %}>Ads</option>
-                            <option value="2" {% if source == "2" %}selected{% endif %}>Direct</option>
-                        </select>
-                    </div>
-
-                    <!-- Browser -->
-                    <div class="form-group col-md-3">
-                        <label for="browser">Browser:</label>
-                        <select class="form-control" id="browser" name="browser" required>
-                            <option selected disabled>----select option----</option>
-                            <option value="0" {% if browser == "0" %}selected{% endif %}>Chrome</option>
-                            <option value="1" {% if browser == "1" %}selected{% endif %}>Opera</option>
-                            <option value="2" {% if browser == "2" %}selected{% endif %}>Safari</option>
-                            <option value="3" {% if browser == "3" %}selected{% endif %}>IE</option>
-                            <option value="4" {% if browser == "4" %}selected{% endif %}>Firefox</option>
-                        </select>
-                    </div>
-
-                    <!-- Sex -->
-                    <div class="form-group col-md-3">
-                        <label for="sex">Sex:</label>
-                        <select class="form-control" id="sex" name="sex" required>
-                            <option selected disabled>----select option----</option>
-                            <option value="1" {% if sex == "1" %}selected{% endif %}>Male</option>
-                            <option value="0" {% if sex == "0" %}selected{% endif %}>Female</option>
-                        </select>
-                    </div>
-
-                    <!-- Age -->
-                    <div class="form-group col-md-3">
-                        <label for="age">Age:</label>
-                        <input type="number" class="form-control" id="age" name="age" value="{{ age }}" required>
-                    </div>                
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="age">Age:</label>
+                    <input type="number" class="form-control" id="age" name="age" value="{{ age }}" required>
                 </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Transaction Details</legend>
-                <div class="form-row">
-                    <!-- Country Name -->
-                    <div class="form-group col-md-3">
-                        <label for="country_name">Country Name:</label>
-                        <select name="country_name" id="country_name" class="form-control">
-                            {% for country in country_names %}
-                                <option value="{{ country }}" {% if country == country_name %}selected{% endif %}>{{ country }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <!-- No of Device Occur -->
-                    <div class="form-group col-md-3">
-                        <label for="n_device_occur">No of Device Occur:</label>
-                        <input type="number" class="form-control" id="n_device_occur" name="n_device_occur" value="{{ n_device_occur }}" required>
-                    </div>
-
-                    <!-- Signup Month -->
-                    <div class="form-group col-md-3">
-                        <label for="signup_month">Signup Month:</label>
-                        <input type="number" class="form-control" id="signup_month" name="signup_month" value="{{ signup_month }}" required>
-                    </div>
-
-                    <!-- Signup Day -->
-                    <div class="form-group col-md-3">
-                        <label for="signup_day">Signup Day:</label>
-                        <input type="number" class="form-control" id="signup_day" name="signup_day" value="{{ signup_day }}" required>
-                    </div>
+                <div class="form-group col-md-3">
+                    <label for="sex">Sex:</label>
+                    <select class="form-control" id="sex" name="sex" required>
+                        <option selected disabled>----select option----</option>
+                        <option value="1" {% if sex == 1 %}selected{% endif %}>Male</option>
+                        <option value="0" {% if sex == 0 %}selected{% endif %}>Female</option>
+                    </select>
                 </div>
-
-                <div class="form-row">
-                    <!-- Signup Day Name -->
-                    <div class="form-group col-md-3">
-                        <label for="signup_day_name">Signup Day Name:</label>
-                        <select name="signup_day_name" id="signup_day_name" class="form-control">
-                            {% for day in signup_day_names %}
-                                <option value="{{ day }}" {% if day == signup_day_name %}selected{% endif %}>{{ day }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <!-- Purchase Month -->
-                    <div class="form-group col-md-3">
-                        <label for="purchase_month">Purchase Month:</label>
-                        <input type="number" class="form-control" id="purchase_month" name="purchase_month" value="{{ purchase_month }}" required>
-                    </div>
-
-                    <!-- Purchase Day -->
-                    <div class="form-group col-md-3">
-                        <label for="purchase_day">Purchase Day:</label>
-                        <input type="number" class="form-control" id="purchase_day" name="purchase_day" value="{{ purchase_day }}" required>
-                    </div>
-
-                    <!-- Purchase Day Name -->
-                    <div class="form-group col-md-3">
-                        <label for="purchase_day_name">Purchase Day Name:</label>
-                        <select name="purchase_day_name" id="purchase_day_name" class="form-control">
-                            {% for day in purchase_day_names %}
-                                <option value="{{ day }}" {% if day == purchase_day_name %}selected{% endif %}>{{ day }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+                <div class="form-group col-md-3">
+                    <label for="cp">Chest Pain Type (cp):</label>
+                    <select class="form-control" id="cp" name="cp" required>
+                        <option selected disabled>----select option----</option>
+                        <option value="0" {% if cp == 0 %}selected{% endif %}>Typical Angina</option>
+                        <option value="1" {% if cp == 1 %}selected{% endif %}>Atypical Angina</option>
+                        <option value="2" {% if cp == 2 %}selected{% endif %}>Non-anginal Pain</option>
+                        <option value="3" {% if cp == 3 %}selected{% endif %}>Asymptomatic</option>
+                    </select>
                 </div>
-
-                <div class="form-row">
-                    <!-- Purchase Over Time -->
-                    <div class="form-group col-md-3">
-                        <label for="purchase_over_time">Purchase Over Time:</label>
-                        <input type="number" step="0.01" class="form-control" id="purchase_over_time" name="purchase_over_time" value="{{ purchase_over_time }}" required>
-                    </div>
+                <div class="form-group col-md-3">
+                    <label for="trestbps">Resting Blood Pressure (trestbps):</label>
+                    <input type="number" class="form-control" id="trestbps" name="trestbps" value="{{ trestbps }}" placeholder="" required placeholder="Enter Resting Blood Pressure(94-200)">
                 </div>
-            </fieldset>
-
-            <button type="submit" class="btn btn-primary mt-4">Predict</button>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="chol">Cholesterol (chol):</label>
+                    <input type="number" class="form-control" id="chol" name="chol" value="{{ chol }}" required placeholder="Enter Cholesterol(126-564)">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="fbs">Fasting Blood Sugar > 120 mg/dl (fbs):</label>
+                    <select class="form-control" id="fbs" name="fbs" required>
+                        <option value="1" {% if fbs == 1 %}selected{% endif %}>True</option>
+                        <option value="0" {% if fbs == 0 %}selected{% endif %}>False</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="restecg">Resting ECG Results (restecg):</label>
+                    <select class="form-control" id="restecg" name="restecg" required>
+                        <option value="0" {% if restecg == 0 %}selected{% endif %}>Normal</option>
+                        <option value="1" {% if restecg == 1 %}selected{% endif %}>ST-T Wave Abnormality</option>
+                        <option value="2" {% if restecg == 2 %}selected{% endif %}>Left Ventricular Hypertrophy</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="thalach">Max Heart Rate Achieved (thalach):</label>
+                    <input type="number" class="form-control" id="thalach" name="thalach" value="{{ thalach }}" required placeholder="Enter Max Heart Rate Achieved(71-202)">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="exang">Exercise Induced Angina (exang):</label>
+                    <select class="form-control" id="exang" name="exang" required>
+                        <option value="1" {% if exang == 1 %}selected{% endif %}>Yes</option>
+                        <option value="0" {% if exang == 0 %}selected{% endif %}>No</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="oldpeak">ST Depression Induced by Exercise (oldpeak):</label>
+                    <input type="number" step="0.1" class="form-control" id="oldpeak" name="oldpeak" value="{{ oldpeak }}" required placeholder="Enter ST Depression Induced by Exercise(0.0-6.2)">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="slope">Slope of the Peak Exercise ST Segment (slope):</label>
+                    <select class="form-control" id="slope" name="slope" required>
+                        <option value="0" {% if slope == 0 %}selected{% endif %}>Upsloping</option>
+                        <option value="1" {% if slope == 1 %}selected{% endif %}>Flat</option>
+                        <option value="2" {% if slope == 2 %}selected{% endif %}>Downsloping</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="ca">Number of Major Vessels (ca):</label>
+                    <select class="form-control" id="ca" name="ca" required placeholder="">
+                        {% for value in cas %}
+                            <option value="{{ value }}" {% if value == ca %}selected{% endif %}>{{ value }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="thal">Thalassemia (thal):</label>
+                    <select class="form-control" id="thal" name="thal" required placehold>
+                        <option value="0" {% if thal == 0 %}selected{% endif %}>Normal</option>
+                        <option value="1" {% if thal == 1 %}selected{% endif %}>Fixed Defect</option>
+                        <option value="2" {% if thal == 2 %}selected{% endif %}>Reversible Defect</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
         </form>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2024 E-commerce Fraud Detection App | Developed by <a href="https://github.com/Md-Emon-Hasan">Md Emon Hasan</a></p>
+        <p>&copy; 2024 Heart Disease Prediction App | Developed by <a href="https://github.com/Md-Emon-Hasan">Md Emon Hasan</a></p>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

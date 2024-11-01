@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: heart-disease-prediction
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app -b 0.0.0.0:$PORT
+    plan: free

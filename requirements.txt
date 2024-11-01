@@ -1,5 +1,8 @@
-scikit-learn
-gunicorn
 flask
 pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+gunicorn
 pytest
